@@ -1,0 +1,11 @@
+reset;
+
+model zadanie_1.mod;
+data dane_ogolne_projektu.dat;
+data zadanie_1.dat;
+
+option solver cplex;
+solve;
+
+display: ilosc_pracujacych, ilosc_przeciazen; 
+display: moc_wytwarzana, liczba_uruchomien, liczba_wylaczen;
