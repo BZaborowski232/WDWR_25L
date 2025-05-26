@@ -7,5 +7,16 @@ data zadanie_1.dat;
 option solver cplex;
 solve;
 
-display: ilosc_pracujacych, ilosc_przeciazen; 
-display: moc_wytwarzana, liczba_uruchomien, liczba_wylaczen;
+display: ilosc_pracujacych;
+
+display: czy_uzyty;
+
+display: moc_wytwarzana;
+
+display: liczba_uruchomien;
+
+display: liczba_wylaczen;
+
+##display: ilosc_pracujacych;
+##display: moc_wytwarzana, liczba_uruchomien, liczba_wylaczen;
+

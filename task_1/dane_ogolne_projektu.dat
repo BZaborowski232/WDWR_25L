@@ -51,8 +51,4 @@ param koszt_startu :=
     T2 1500
     T3 1000;
 
-param prog_przeciazenia := 0.9;
-
-param koszt_pracy_przeciazenie := 200;
-
 param dopuszczalny_wzrost_zapotrzebowania := 0.1;
