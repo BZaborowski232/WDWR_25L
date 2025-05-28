@@ -1,0 +1,17 @@
+reset;
+option solver cplex;
+option solver_msg 0;
+
+model zadanie_2.mod;
+data dane_ogolne_projektu.dat;
+data zadanie_2c.dat;
+param filename := "koszty_dla_"&lambda&".csv" symbolic;
+
+#W zaleznosci ktorej wartosci lambda chcemy policzyc koszty
+#let lambda := 0;
+#let lambda := 2400;
+let lambda := 17000;
+
+solve;
+printf "cost\n" > (filename);
+printf{s in SCENARIUSZE} "%d\n", koszt[s] >> (filename);

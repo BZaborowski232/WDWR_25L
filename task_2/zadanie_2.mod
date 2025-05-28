@@ -1,5 +1,6 @@
 # --- parametry ---
-param liczba_scenariuszy := 50;
+#param liczba_scenariuszy := 50;
+param liczba_scenariuszy := 100;
 
 set GENERATORY;
 set GODZINY_DOBY = 0..23, circular;

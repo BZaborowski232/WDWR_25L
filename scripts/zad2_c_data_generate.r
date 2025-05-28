@@ -1,3 +1,6 @@
+#Idk czy bede z tego korzystac
+
+
 library(mvtnorm)
 
 set.seed(0)
@@ -7,7 +10,7 @@ beta <- 5
 v <- 5
 mu <- c(2.5, 1.5, 3.5)
 sigma <- matrix(c(1, -2, -1, -2, 25, -8, -1, -8, 9), ncol = 3, nrow = 3)
-count <- 1000
+count <- 100
 
 sink("../task_2/zadanie_2c.dat")
 cat("param liczba_scenariuszy := ", count, ";\n\n", sep = "")
