@@ -1,0 +1,21 @@
+reset;
+option solver cplex;
+option solver_msg 0;
+
+model zadanie_2.mod;
+data dane_ogolne_projektu.dat;
+data zadanie_2ab.dat;
+
+printf "lambda\tkoszt\tryzyko_GINI\n" > zadanie_2ab_DODATEK_ROZSZERZENIE.csv; 
+
+set test_lambdas := 15000..25000 by 100; #To jest do testowania, jak się zachowa model dalej
+#set test_lambdas := 0..15000 by 100; #To oryginalne do generowania danych 
+for{test_lambda in test_lambdas}{
+    printf "\r%.2f", test_lambda;
+    let lambda := test_lambda;
+	solve > NUL;
+    printf "%.2f\t%.4f\t%.4f\n", lambda, sredni_koszt, ryzyko_GINI >> zadanie_2ab_DODATEK_ROZSZERZENIE.csv; 
+    display lambda, sredni_koszt, ryzyko_GINI;
+    display ilosc_pracujacych;
+    display moc_wytwarzana;
+}

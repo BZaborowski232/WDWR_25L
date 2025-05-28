@@ -5,7 +5,7 @@ alpha <- 1
 beta <- 5
 
 
-v <- 4						#stopnie swobody dla rozkładu t-Studenta.
+v <- 5						#stopnie swobody dla rozkładu t-Studenta.
 mu <- c(2.5, 1.5, 3.5)		#średnie kosztów dla trzech technologii.
 variance <- c(1, 25, 9)		#wariancje kosztów dla trzech technologii.
 

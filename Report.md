@@ -12,9 +12,9 @@ Ponieważ, znamy rozkład zmiennej $\textbf{R}$, możemy obliczyć jej wartość
 
 Otrzymane wyniki: 
 
-$\mathbb{E}(\textbf{R}_1)=2.655467 \\
-\mathbb{E}(\textbf{R}_2)=2.906804 \\
-\mathbb{E}(\textbf{R}_3)=3.08057$
+$\mathbb{E}(\textbf{R}_1)=2.65067 \\
+\mathbb{E}(\textbf{R}_2)=2.909694 \\
+\mathbb{E}(\textbf{R}_3)=3.07852$
 
 Wygenerowane wyniki zostały zapisane z wykorzystaniem formatu, z którego korzysta AMPL, w pliku `zadanie_1.dat`
 
@@ -165,7 +165,7 @@ Uwagi:
 ### Analiza wyników:
 Celem modelu była minimalizacja całkowitych kosztów pracy trzech typów generatorów (T1, T2, T3) w horyzoncie dobowym (24 godziny), przy zapewnieniu pokrycia zapotrzebowania na moc w każdej godzinie. Model uwzględniał ograniczenia techniczne (minimalna i maksymalna liczba jednostek, moce, koszty uruchomienia) oraz przełączania jednostek.
 
-Model osiągnął wartość funkcji celu równą 820 302,56, co oznacza minimalny koszt wytworzenia energii przy spełnieniu wszystkich warunków technicznych i zapotrzebowania.
+Model osiągnął wartość funkcji celu równą 820 260.829, co oznacza minimalny koszt wytworzenia energii przy spełnieniu wszystkich warunków technicznych i zapotrzebowania.
 
 #### Praca poszczególnych typów generatorów:
 Generator T1:
@@ -195,6 +195,73 @@ T3 jest źródłem szczytowym, uruchamianym jedynie w okresie największego zapo
 
 Suma mocy wytwarzanej przez wszystkie typy generatorów w każdej godzinie pokrywa zapotrzebowanie (założenie modelu). W godzinach szczytu (15–17) konieczne było włączenie T3, co potwierdza skuteczne działanie modelu w zakresie zapewnienia ciągłości zasilania. Model ogranicza liczbę przełączeń, co wpływa pozytywnie na minimalizację kosztów oraz potencjalnie ogranicza eksploatację generatorów.
 
+
+Poniżej tabele z rozkładem ilości pracujących generatorów oraz wytwarzanej mocy w stosunku do godzin:
+
+**Liczba pracujących:**
+| godzina | T1 | T2 | T3 |
+|--------:|---:|---:|---:|
+|       0 | 13 |  1 |  0 |
+|       1 | 13 |  1 |  0 |
+|       2 | 13 |  1 |  0 |
+|       3 | 13 |  1 |  0 |
+|       4 | 13 |  1 |  0 |
+|       5 | 13 |  1 |  0 |
+|       6 | 16 | 14 |  0 |
+|       7 | 16 | 14 |  0 |
+|       8 | 16 | 14 |  0 |
+|       9 | 16 |  3 |  0 |
+|      10 | 16 |  3 |  0 |
+|      11 | 16 |  3 |  0 |
+|      12 | 16 |  3 |  0 |
+|      13 | 16 |  3 |  0 |
+|      14 | 16 |  3 |  0 |
+|      15 | 16 | 14 |  7 |
+|      16 | 16 | 14 |  7 |
+|      17 | 16 | 14 |  7 |
+|      18 | 16 |  3 |  0 |
+|      19 | 16 |  3 |  0 |
+|      20 | 16 |  3 |  0 |
+|      21 | 16 |  3 |  0 |
+|      22 | 16 |  3 |  0 |
+|      23 | 16 |  3 |  0 |
+
+
+
+
+**Wytwarzana moc:**
+![Wykres generowanej mocy](Obrazy/Zad1_Wykres_wytwarzanej_mocy.png)
+
+| godzina |     T1 |     T2 |     T3 |
+|--------:|-------:|-------:|-------:|
+|       0 |  13700 |   1300 |      0 |
+|       1 |  13700 |   1300 |      0 |
+|       2 |  13700 |   1300 |      0 |
+|       3 |  13700 |   1300 |      0 |
+|       4 |  13700 |   1300 |      0 |
+|       5 |  13700 |   1300 |      0 |
+|       6 |  16800 |  18200 |      0 |
+|       7 |  16800 |  18200 |      0 |
+|       8 |  16800 |  18200 |      0 |
+|       9 |  16100 |   3900 |      0 |
+|      10 |  16100 |   3900 |      0 |
+|      11 |  16100 |   3900 |      0 |
+|      12 |  16100 |   3900 |      0 |
+|      13 |  16100 |   3900 |      0 |
+|      14 |  16100 |   3900 |      0 |
+|      15 |  16300 |  18200 |  10500 |
+|      16 |  16300 |  18200 |  10500 |
+|      17 |  16300 |  18200 |  10500 |
+|      18 |  16100 |   3900 |      0 |
+|      19 |  16100 |   3900 |      0 |
+|      20 |  16100 |   3900 |      0 |
+|      21 |  16100 |   3900 |      0 |
+|      22 |  16100 |   3900 |      0 |
+|      23 |  16100 |   3900 |      0 |
+
+
 #### Wnioski końcowe
 
 Harmonogram pracy generatorów został zaplanowany w sposób optymalny, minimalizując koszty przy jednoczesnym spełnieniu ograniczeń technicznych i zapewnieniu ciągłości dostaw energii. Generator T1 działał jako źródło podstawowe, T2 jako uzupełniające, natomiast T3 jako źródło szczytowe. Taki podział pracy świadczy o poprawnym uwzględnieniu charakterystyki poszczególnych typów jednostek w modelu.
+
+## Zadanie 2
