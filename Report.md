@@ -56,11 +56,6 @@ $$
 x_{ht} \geq 0, \quad u_{ht} \geq 0, \quad v_{ht} \geq 0, \quad q_{ht} \geq 0 \quad \forall h \in H, \quad \forall t \in T.
 $$
 
-
-
-
-
-
 ### Ograniczenia modelu
 
 W poniższym modelu przyjęto następujące ograniczenia:
