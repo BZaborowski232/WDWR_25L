@@ -29,16 +29,24 @@ text(min_risk$ryzyko_GINI, min_risk$koszt, pos = 4,
                     ")\nλ=", min_risk$lambda, sep=""),
      col = "blue", cex = 0.8)
 
-# Przykładowo lambda od ktorej jest wieksza zmiana tendencji
+# Przykładowo lambda, od których jest większa zmiana tendencji
 wybrane_lambda <- c(2000, 4000)
 
 for (l in wybrane_lambda) {
   punkty <- df[df$lambda == l, ]
   if(nrow(punkty) > 0){
     points(punkty$ryzyko_GINI, punkty$koszt, pch = 0, col = "#02dd02", cex = 1.3)
-    text(punkty$ryzyko_GINI, punkty$koszt, pos = 3, labels = paste0("λ=", l), col = "#02dd02", cex = 0.7)
+    
+    # Tekst z wartością λ oraz odpowiadającymi wartościami ryzyka i kosztu
+    etykieta <- paste0("λ = ", l, 
+                       "\nR = ", round(punkty$ryzyko_GINI, 3),
+                       "\nK = ", round(punkty$koszt, 0))
+    
+    text(punkty$ryzyko_GINI, punkty$koszt, pos = 3, labels = etykieta, 
+         col = "#02dd02", cex = 0.7)
   }
 }
+
 
 # Dodanie legendy
 legend("topright", legend = c("Punkty danych", "Min koszt", "Min ryzyko", "Wybrane λ \n przy zmianie \ntendencji"),

@@ -24,7 +24,7 @@ axis(2, col = "white", col.axis = "white")
 box(col = "white")
 
 legend("topleft",
-       legend = c("A, λ = 0", "B, λ = 2400", "C, λ = 1000"),
+       legend = c("A, λ = 0", "B, λ = 2000", "C, λ = 4000"),
        col = c("deepskyblue", "chartreuse2", "orange"),
        lty = 1, lwd = 3,
        text.col = "white", bg = "black", box.col = "white",

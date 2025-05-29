@@ -50,13 +50,13 @@ Wszystkie zmienne decyzyjne muszą przyjmować wartości nieujemne, co odzwierci
 - $v_{ht} \in \mathbb{N}_0$ — liczba generatorów typu $t$ wyłączonych w godzinie $h$ (nieujemna liczba całkowita),  
 - $q_{ht} \in \mathbb{R}_{\geq 0}$ — moc generowana przez generatory typu $t$ w godzinie $h$ [MW] (nieujemna liczba rzeczywista).
 
-Formalnie zapisujemy:
+Formalnie zapisuję założenie o nieujemności zmiennych:
 
 $$
 x_{ht} \geq 0, \quad u_{ht} \geq 0, \quad v_{ht} \geq 0, \quad q_{ht} \geq 0 \quad \forall h \in H, \quad \forall t \in T.
 $$
 
-Takie założenie gwarantuje poprawność modelu i sensowność fizyczną wyników optymalizacji.
+
 
 
 
@@ -116,7 +116,6 @@ $$
 q_{ht} \leq x_{ht} \cdot \text{max}_t
 $$
 
-
 8. **Limit dostępnych generatorów:**  
 Liczba pracujących generatorów nie może przekraczać liczby dostępnych jednostek danego typu.  
 
@@ -131,7 +130,6 @@ $$
 x_{ht} = x_{\text{prev}(h),t} + u_{ht} - v_{ht} \quad \forall h > 0, t
 $$
 
- 
 ### Funkcja celu:
 
 Celem optymalizacji jest **minimalizacja całkowitych kosztów eksploatacji** systemu generacji energii elektrycznej w horyzoncie doby.
@@ -147,6 +145,7 @@ u_{ht} \cdot K^{\text{start}}_t
 $$
 
 gdzie:
+
 - $h \in H = \{0, 1, \dots, 23\}$ — indeks godzin doby,  
 - $t \in T = \{1, 2, 3\}$ — typ generatora,  
 - $u_{ht}$ — liczba generatorów typu $t$ uruchomionych o godzinie $h$,  
@@ -158,17 +157,19 @@ gdzie:
 - $K^{\text{dodatkowa}}_t$ — koszt jednostkowy (za 1 MW) dodatkowej mocy powyżej minimum dla typu $t$.  
 
 Uwagi:
-- Składnik $(q_{ht} - x_{ht} \cdot \text{min}_t)$ reprezentuje moc powyżej minimalnego obciążenia, która generuje **dodatkowe koszty eksploatacyjne**.
 
-
+Składnik $(q_{ht} - x_{ht} \cdot \text{min}_t)$ reprezentuje moc powyżej minimalnego obciążenia, która generuje dodatkowe koszty eksploatacyjne.
 
 ### Analiza wyników:
+
 Celem modelu była minimalizacja całkowitych kosztów pracy trzech typów generatorów (T1, T2, T3) w horyzoncie dobowym (24 godziny), przy zapewnieniu pokrycia zapotrzebowania na moc w każdej godzinie. Model uwzględniał ograniczenia techniczne (minimalna i maksymalna liczba jednostek, moce, koszty uruchomienia) oraz przełączania jednostek.
 
-Model osiągnął wartość funkcji celu równą 820 260.829, co oznacza minimalny koszt wytworzenia energii przy spełnieniu wszystkich warunków technicznych i zapotrzebowania.
+Model osiągnął wartość funkcji celu równą **820 260.829 zł**, co oznacza minimalny koszt wytworzenia energii przy spełnieniu wszystkich warunków technicznych i zapotrzebowania.
 
 #### Praca poszczególnych typów generatorów:
+
 Generator T1:
+
 - Pracował przez całą dobę – był używany w każdej godzinie
 - Zawsze posiadał generator pracujący z nim równocześnie w danej godzinie
 - Liczba pracujących jednostek:
@@ -179,6 +180,7 @@ Generator T1:
 Można wnioskować więc, że T1 pełni rolę stabilnego źródła bazowego, najprawdopodobniej o najniższych kosztach jednostkowych pracy.
 
 Generator T2:
+
 - Również aktywny przez całą dobę
 - Działał w dwóch trybach:
 	- godziny 0–5 i 9–14 oraz 18–23: 1 lub 3 jednostki (niska produkcja: 1300–3900 MW),
@@ -187,6 +189,7 @@ Generator T2:
 Z perspektywy rozwiązania, T2 pełni funkcję elastycznego źródła uzupełniającego, dostosowując się do okresów zwiększonego zapotrzebowania.
 
 Generator T3:
+
 - Pracował wyłącznie w godzinach 15–17.
 - Uruchomiono 7 jednostek, co daje produkcję 10 500 MW.
 - Pozostawał wyłączony przez resztę doby.
@@ -195,10 +198,10 @@ T3 jest źródłem szczytowym, uruchamianym jedynie w okresie największego zapo
 
 Suma mocy wytwarzanej przez wszystkie typy generatorów w każdej godzinie pokrywa zapotrzebowanie (założenie modelu). W godzinach szczytu (15–17) konieczne było włączenie T3, co potwierdza skuteczne działanie modelu w zakresie zapewnienia ciągłości zasilania. Model ogranicza liczbę przełączeń, co wpływa pozytywnie na minimalizację kosztów oraz potencjalnie ogranicza eksploatację generatorów.
 
-
 Poniżej tabele z rozkładem ilości pracujących generatorów oraz wytwarzanej mocy w stosunku do godzin:
 
 **Liczba pracujących:**
+
 | godzina | T1 | T2 | T3 |
 |--------:|---:|---:|---:|
 |       0 | 13 |  1 |  0 |
@@ -226,10 +229,7 @@ Poniżej tabele z rozkładem ilości pracujących generatorów oraz wytwarzanej 
 |      22 | 16 |  3 |  0 |
 |      23 | 16 |  3 |  0 |
 
-
-
-
-**Wytwarzana moc:**
+**Analiza wytwarzanej mocy na przestrzeni czasu:**
 ![Wykres generowanej mocy](Obrazy/Zad1_Wykres_wytwarzanej_mocy.png)
 
 | godzina |     T1 |     T2 |     T3 |
@@ -259,9 +259,105 @@ Poniżej tabele z rozkładem ilości pracujących generatorów oraz wytwarzanej 
 |      22 |  16100 |   3900 |      0 |
 |      23 |  16100 |   3900 |      0 |
 
-
 #### Wnioski końcowe
 
 Harmonogram pracy generatorów został zaplanowany w sposób optymalny, minimalizując koszty przy jednoczesnym spełnieniu ograniczeń technicznych i zapewnieniu ciągłości dostaw energii. Generator T1 działał jako źródło podstawowe, T2 jako uzupełniające, natomiast T3 jako źródło szczytowe. Taki podział pracy świadczy o poprawnym uwzględnieniu charakterystyki poszczególnych typów jednostek w modelu.
 
 ## Zadanie 2
+
+W drugim zadaniu rozszerzono model opracowany w ramach zadania 1 o aspekt niepewności. W tym celu do opisu problemu wprowadzono scenariusze możliwych realizacji kosztów oraz zdefiniowano miarę ryzyka jako średnią różnicę Giniego. Zadanie przyjęło zatem postać problemu dwukryterialnego, w którym uwzględnia się:
+
+- koszt: jako wartość oczekiwaną,
+- ryzyko: jako średnią różnicę Giniego, tj.
+
+$$
+\Gamma(x) = \sum_{t'=1}^{T} \sum_{t''=1}^{T} \left| r_{t'}(x) - r_{t''}(x) \right| \cdot p_{t'} \cdot p_{t''}
+$$
+
+gdzie:
+
+$r_t(x) \text{ – realizacja kosztu dla scenariusza } t,$
+
+$p_t \text{ – prawdopodobieństwo scenariusza } t.$
+
+Model z zadania 1 zakładał deterministyczne wartości parametrów kosztowych. W zadaniu 2 wprowadzono zbiór SCENARIUSZE, który odzwierciedla różne możliwe realizacje kosztów zmiennych (np. kosztów dodatkowych MW). W związku z tym:
+
+- parametry takie jak koszt za dodatkowy MW mocy zależą od scenariusza,
+
+- każda zmienna kosztowa zależy od konkretnego scenariusza, przez co funkcja celu musi 	być agregowana po scenariuszach,
+
+- dodano obliczanie oczekiwanego kosztu oraz ryzyka (średniej różnicy Giniego),
+
+- model optymalizuje skalaryzację tych dwóch kryteriów w celu znalezienia rozwiązań efektywnych.
+
+### a) Wyznaczenie obrazu zbioru rozwiązań efektywnych w przestrzeni ryzyko–koszt
+
+Aby wyznaczyć zbiór rozwiązań efektywnych w przestrzeni $(\text{Koszt}, \text{Ryzyko})$, zastosowano ważoną funkcję celu w postaci:
+
+$$
+\min \left\{ \lambda \cdot \mathbb{E}(\text{Koszt}) + (1 - \lambda) \cdot \Gamma(x) \right\}
+$$
+gdzie:
+
+$\mathbb{E}(\text{Koszt})$ - oczekiwana wartość kosztu całkowitego,
+
+$\Gamma(x)$ - miara ryzyka (wskaźnik Giniego),
+
+Przez brak dokładnej informacji o ryzyku dla poszczególnych scenariuszy w modelu zostało pzyjęte założenie o równym, jednakowym prawdopodobieństwie dla każdego z nich.
+
+Model został rozwiązany wielokrotnie dla różnych wartości parametru $\lambda$ (0..17500 by 100). Dla każdej wartości $\lambda$ uzyskano optymalne rozwiązanie, które minimalizuje ważoną sumę kosztu i ryzyka. W efekcie otrzymany został zestaw punktów, gdzie każdy punkt reprezentuje jedną wartość oczekiwanej kosztu, oraz odpowiadającą jej wartość ryzyka.
+
+Punkty te tworzą tzw. front Pareto-efektywny (zbiór rozwiązań efektywnych), który jest krzywą kompromisu między kosztami a ryzykiem. Na wykresie w dwuwymiarowej przestrzeni $(\text{Koszt}, \text{Ryzyko})$ wygląda to jak chmura punktów. Wyróżnione zostały także skrajne rozwiązania.
+
+Ten obraz pozwala decydentowi świadomie wybrać optymalny kompromis między kosztem a stabilnością kosztową (ryzykiem). Analiza poniższego zbioru rozwiązań efektywnych umożliwia także zrozumienie, jak bardzo rośnie koszt, gdy zmniejszamy ryzyko i odwrotnie.
+
+![Wykres rozwiązań optymalnych](Obrazy/zadanie_2ab_wykres.png)
+
+Warto zauważyć, że większy nacisk na koszt (niższe wartości $\lambda$) prowadził do rozwiązań tańszych, ale bardziej ryzykownych, natomiast większy nacisk na ryzyko (wyższe wartości $\lambda$) skutkował rozwiązaniami bardziej stabilnymi, lecz droższymi.
+
+### b) Wyznaczenie rozwiązań minimalnego kosztu i minimalnego ryzyka
+Analizując wykres przedstawiający relację między kosztem a ryzykiem (mierzone wskaźnikiem Giniego), możemy wyróżnić dwa szczególne przypadki, które reprezentują skrajne punkty zbioru Pareto – tzn. takie, gdzie dalsza poprawa jednej z wartości (kosztu lub ryzyka) nie jest możliwa bez pogorszenia drugiej:
+
+W przypadku, gdy współczynnik awersji do ryzyka $\lambda = 0$, ryzyko nie jest w ogóle brane pod uwagę w procesie optymalizacji – jedynym kryterium jest minimalizacja kosztu. Minimalny koszt całkowity wynosi 818 416 zł natomiast wartość wskaźnika Giniego to 3485 zł. Optymalizacja prowadzi do rozwiązania, które jest najbardziej opłacalne finansowo, jednak przy tym rozwiązaniu poziom ryzyka jest stosunkowo wysoki. Minimalne różnice minimalnego kosztu (na poziomie 1844,83 zł, czyli ~0,2%) mogą wynikać z niewystarczającej liczby wygenerowanych scenariuszy.
+
+
+Przy wysokich wartościach parametru $\lambda$ (od około 1700 wzwyż), algorytm optymalizacyjny znacząco faworyzuje rozwiązania o niskim ryzyku, nawet kosztem wyższych kosztów całkowitych. Wskaźnik Giniego (ryzyko) osiąga 0 zł, czyli całkowity brak nierówności w kosztach. Całkowity koszt wynosi w tym przypadku wynosi 873 600 zł. Takie rozwiązanie zapewnia maksymalną przewidywalność, jednak kosztem tej stabilności jest znaczne zwiększenie wydatków, o ponad 55 000 zł w porównaniu do rozwiązania minimalizującego koszt.
+
+### c) Sprawdzenie relacji dominacji stochastycznej pierwszego rzędu
+
+Spośród wyznaczonego zbioru rozwiązań Pareto wybrano trzy różne punkty i przeanalizowano je pod kątem stochastycznej dominacji pierwszego rzędu (FSD). Dominacja stochastyczna I rzędu zachodzi, gdy Rozkład funkcji kosztów jednego rozwiązania dominuje inny, tzn. ma mniejsze koszty dla wszystkich poziomów kwantyli.
+
+Bardziej formalny zapis warunków poniżej:
+
+Aby zmienna losowa $Y'$ dominowała w sensie FSD $Y''$, muszą zajść dwa warunki:
+
+ 1. $\forall k\quad F_{Y'}(k) \ge F_{Y''}(k)$
+ 2. $\exists k\quad F_{Y'}(k) > F_{Y''}(k)$
+
+W celu przeprowadzenia analizy zostały wybrane następujące rozwiązania:
+
+- A (0, 873600) dla $\lambda = 0$ 
+
+- B (414.5143, 829029) dla $\lambda = 2000$
+
+- C (211.5454, 846182) dla $\lambda = 4000$ 
+
+Wygenerowano wykres dystrybuant kosztów (CDF) dla wybranych rozwiązań oraz porównano ich wartości. Liczba scenariuszy została zwięszona z 50 do 100 w celu poprawienia czytelności poniższego wykresu.
+
+![Wykres rozwiązań optymalnych](Obrazy/Wykres_dystrybuant.png)
+
+ Obserwacje:
+
+- Krzywa A (niebieska, λ = 0) rośnie najszybciej – już przy niższych kosztach osiąga wysokie wartości na osi Y.
+
+- Krzywa B (zielona, λ = 2000) rośnie wolniej niż A, ale szybciej niż C.
+
+- Krzywa C (pomarańczowa, λ = 4000) rośnie najpóźniej – czyli koszty są najwyższe.
+
+Rozwiązanie A dominowało Rozwiązanie C, ponieważ miało mniejszy koszt w całym zakresie dystrybuanty, jej krzywa leży w całości ponad krzywą rozwiązania C.
+
+Rozwiązanie B dominowało Rozwiązanie C, ponieważ miało mniejszy koszt w całym zakresie dystrybuanty, jej krzywa leży w całości ponad krzywą rozwiązania C.
+
+Pomiędzy Rozwiązaniami A i B nie zachodziła dominacja – krzywe przecinały się.
+
+W praktyce oznacza to, że choć rozwiązania mogą być Pareto-efektywne, to nie zawsze jednoznacznie lepsze w sensie stochastycznym.
