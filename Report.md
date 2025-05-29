@@ -138,12 +138,9 @@ Funkcję celu zapisujemy jako:
 
 $$
 \min \quad \text{Koszt}_{\text{całkowity}} = \sum_{h \in H} \sum_{t \in T} \left[
-u_{ht} \cdot K^{\text{start}}_t
-+ x_{ht} \cdot K^{\text{stała}}_t
-+ \left( q_{ht} - x_{ht} \cdot \text{min}_t \right) \cdot K^{\text{dodatkowa}}_t
+u_{ht} \cdot K^{\text{start}}_t + x_{ht} \cdot K^{\text{stała}}_t + \left( q_{ht} - x_{ht} \cdot \text{min}_t \right) \cdot K^{\text{dodatkowa}}_t
 \right]
 $$
-
 gdzie:
 
 - $h \in H = \{0, 1, \dots, 23\}$ — indeks godzin doby,  
@@ -168,7 +165,7 @@ Model osiągnął wartość funkcji celu równą **820 260.829 zł**, co oznacza
 
 #### Praca poszczególnych typów generatorów:
 
-Generator T1:
+**Generator T1:**
 
 - Pracował przez całą dobę – był używany w każdej godzinie
 - Zawsze posiadał generator pracujący z nim równocześnie w danej godzinie
@@ -179,7 +176,7 @@ Generator T1:
 
 Można wnioskować więc, że T1 pełni rolę stabilnego źródła bazowego, najprawdopodobniej o najniższych kosztach jednostkowych pracy.
 
-Generator T2:
+**Generator T2:**
 
 - Również aktywny przez całą dobę
 - Działał w dwóch trybach:
@@ -188,7 +185,7 @@ Generator T2:
 
 Z perspektywy rozwiązania, T2 pełni funkcję elastycznego źródła uzupełniającego, dostosowując się do okresów zwiększonego zapotrzebowania.
 
-Generator T3:
+**Generator T3:**
 
 - Pracował wyłącznie w godzinach 15–17.
 - Uruchomiono 7 jednostek, co daje produkcję 10 500 MW.
@@ -305,7 +302,7 @@ $\Gamma(x)$ - miara ryzyka (wskaźnik Giniego),
 
 Przez brak dokładnej informacji o ryzyku dla poszczególnych scenariuszy w modelu zostało pzyjęte założenie o równym, jednakowym prawdopodobieństwie dla każdego z nich.
 
-Model został rozwiązany wielokrotnie dla różnych wartości parametru $\lambda$ (0..17500 by 100). Dla każdej wartości $\lambda$ uzyskano optymalne rozwiązanie, które minimalizuje ważoną sumę kosztu i ryzyka. W efekcie otrzymany został zestaw punktów, gdzie każdy punkt reprezentuje jedną wartość oczekiwanej kosztu, oraz odpowiadającą jej wartość ryzyka.
+Model został rozwiązany wielokrotnie dla różnych wartości parametru $\lambda$ (0..17500 by 100). Dla każdej wartości $\lambda$ uzyskano optymalne rozwiązanie, które minimalizuje ważoną sumę kosztu i ryzyka. W efekcie otrzymany został zestaw punktów, gdzie każdy punkt reprezentuje jedną wartość oczekiwaną kosztu, oraz odpowiadającą jej wartość ryzyka.
 
 Punkty te tworzą tzw. front Pareto-efektywny (zbiór rozwiązań efektywnych), który jest krzywą kompromisu między kosztami a ryzykiem. Na wykresie w dwuwymiarowej przestrzeni $(\text{Koszt}, \text{Ryzyko})$ wygląda to jak chmura punktów. Wyróżnione zostały także skrajne rozwiązania.
 
@@ -313,7 +310,7 @@ Ten obraz pozwala decydentowi świadomie wybrać optymalny kompromis między kos
 
 ![Wykres rozwiązań optymalnych](Obrazy/zadanie_2ab_wykres.png)
 
-Warto zauważyć, że większy nacisk na koszt (niższe wartości $\lambda$) prowadził do rozwiązań tańszych, ale bardziej ryzykownych, natomiast większy nacisk na ryzyko (wyższe wartości $\lambda$) skutkował rozwiązaniami bardziej stabilnymi, lecz droższymi.
+Warto zauważyć, że większy nacisk na minimalizację kosztów (niższe wartości $\lambda$) prowadził do rozwiązań tańszych, ale bardziej ryzykownych, natomiast większy nacisk na minimalizację ryzyka (wyższe wartości $\lambda$) skutkował rozwiązaniami bardziej stabilnymi, lecz znacznie droższymi.
 
 ### b) Wyznaczenie rozwiązań minimalnego kosztu i minimalnego ryzyka
 Analizując wykres przedstawiający relację między kosztem a ryzykiem (mierzone wskaźnikiem Giniego), możemy wyróżnić dwa szczególne przypadki, które reprezentują skrajne punkty zbioru Pareto – tzn. takie, gdzie dalsza poprawa jednej z wartości (kosztu lub ryzyka) nie jest możliwa bez pogorszenia drugiej:
@@ -325,7 +322,7 @@ Przy wysokich wartościach parametru $\lambda$ (od około 1700 wzwyż), algorytm
 
 ### c) Sprawdzenie relacji dominacji stochastycznej pierwszego rzędu
 
-Spośród wyznaczonego zbioru rozwiązań Pareto wybrano trzy różne punkty i przeanalizowano je pod kątem stochastycznej dominacji pierwszego rzędu (FSD). Dominacja stochastyczna I rzędu zachodzi, gdy Rozkład funkcji kosztów jednego rozwiązania dominuje inny, tzn. ma mniejsze koszty dla wszystkich poziomów kwantyli.
+Spośród wyznaczonego zbioru rozwiązań Pareto wybrano trzy różne punkty i przeanalizowano je pod kątem stochastycznej dominacji pierwszego rzędu (FSD). Dominacja stochastyczna I rzędu zachodzi, gdy rozkład funkcji kosztów jednego rozwiązania dominuje inny, tzn. ma mniejsze koszty dla wszystkich poziomów kwantyli.
 
 Bardziej formalny zapis warunków poniżej:
 
@@ -342,7 +339,7 @@ W celu przeprowadzenia analizy zostały wybrane następujące rozwiązania:
 
 - C (211.5454, 846182) dla $\lambda = 4000$ 
 
-Wygenerowano wykres dystrybuant kosztów (CDF) dla wybranych rozwiązań oraz porównano ich wartości. Liczba scenariuszy została zwięszona z 50 do 100 w celu poprawienia czytelności poniższego wykresu.
+Wygenerowano wykres dystrybuant kosztów dla wybranych rozwiązań oraz porównano ich wartości. Liczba scenariuszy została zwięszona z 50 do 100 w celu poprawienia czytelności poniższego wykresu.
 
 ![Wykres rozwiązań optymalnych](Obrazy/Wykres_dystrybuant.png)
 
@@ -354,9 +351,13 @@ Wygenerowano wykres dystrybuant kosztów (CDF) dla wybranych rozwiązań oraz po
 
 - Krzywa C (pomarańczowa, λ = 4000) rośnie najpóźniej – czyli koszty są najwyższe.
 
+**Dominacje:**
+
 Rozwiązanie A dominowało Rozwiązanie C, ponieważ miało mniejszy koszt w całym zakresie dystrybuanty, jej krzywa leży w całości ponad krzywą rozwiązania C.
+$$A \succ_{FSD} C$$
 
 Rozwiązanie B dominowało Rozwiązanie C, ponieważ miało mniejszy koszt w całym zakresie dystrybuanty, jej krzywa leży w całości ponad krzywą rozwiązania C.
+$$B \succ_{FSD} C$$
 
 Pomiędzy Rozwiązaniami A i B nie zachodziła dominacja – krzywe przecinały się.
 
