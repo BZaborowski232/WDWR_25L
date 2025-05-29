@@ -30,7 +30,7 @@ text(min_risk$ryzyko_GINI, min_risk$koszt, pos = 4,
      col = "blue", cex = 0.8)
 
 # Przykładowo lambda od ktorej jest wieksza zmiana tendencji
-wybrane_lambda <- c(2400)
+wybrane_lambda <- c(2000, 4000)
 
 for (l in wybrane_lambda) {
   punkty <- df[df$lambda == l, ]

@@ -9,8 +9,8 @@ param filename := "koszty_dla_"&lambda&".csv" symbolic;
 
 #W zaleznosci ktorej wartosci lambda chcemy policzyc koszty
 #let lambda := 0;
-#let lambda := 2400;
-let lambda := 17000;
+#let lambda := 2000;
+let lambda := 4000;
 
 solve;
 printf "cost\n" > (filename);
