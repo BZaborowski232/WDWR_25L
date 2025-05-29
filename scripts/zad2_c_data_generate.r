@@ -1,4 +1,4 @@
-#Idk czy bede z tego korzystac
+#Idk czy bede z tego korzystac - ale zostawiam, zeby bylo w razie generowania wiecej scenarios do zadania 2c 
 
 
 library(mvtnorm)

@@ -22,7 +22,7 @@ param prawdopodobienstwo{SCENARIUSZE};
 let {s in SCENARIUSZE} prawdopodobienstwo[s] := 1 / liczba_scenariuszy;
 
 
-# --- zmienne ---
+# --------------- ZMIENNE ---------------
 var ilosc_pracujacych{godzina in GODZINY_DOBY, gen in GENERATORY} >= 0, integer;    # ile generatorów typu pracuje o danej godzinie
 var czy_uzyty{godzina in GODZINY_DOBY, gen in GENERATORY} binary;                   # binarka, czy generator typu jest użyty w danej godzinie (czyli pracuje lub jest uruchomiony)
 var moc_wytwarzana{godzina in GODZINY_DOBY, gen in GENERATORY} >= 0;                # łączna moc od generatorów typu w godzinie
@@ -30,7 +30,7 @@ var liczba_uruchomien{godzina in GODZINY_DOBY, gen in GENERATORY} >= 0, integer;
 var liczba_wylaczen{godzina in GODZINY_DOBY, gen in GENERATORY} >= 0, integer;      # ile generatorów zostało wyłączonych w danej godzinie
 
 
-# --- ograniczenia ---
+# --------------- OGRANICZENIA ------------------
 
 # Powiązanie ilosc_pracujacych i czy_uzyty - górna granica
 s.t. DefinicjaUzyciaGeneratora {godzina in GODZINY_DOBY, gen in GENERATORY}:
@@ -71,7 +71,7 @@ s.t. zmiana_stanu{godzina in GODZINY_DOBY, gen in GENERATORY}:
     ilosc_pracujacych[godzina, gen] = ilosc_pracujacych[prev(godzina), gen]
         + liczba_uruchomien[godzina, gen] - liczba_wylaczen[godzina, gen];
 
-# --- Zadanie 2 ---
+# ------------------ ZADANIE 2 ---------------------
 
 # Koszt dla każdego scenariusza
 var koszt{s in SCENARIUSZE} =

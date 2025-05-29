@@ -1,4 +1,4 @@
-#skrypt generuje oczekiwane wartości kosztu dodatkowego megawata (MW) dla trzech różnych technologii (T1, T2, T3) na podstawie obciętego rozkładu t-Studenta. # nolint
+#skrypt generuje oczekiwane wartości kosztu dodatkowego megawata (MW) dla trzech różnych technologii (T1, T2, T3) na podstawie obciętego rozkładu t-Studenta.
 
 # Parametry rozkładu t-Studenta, granice obcięcia — ograniczają rozkład do przedziału ⟨1, 5⟩.
 alpha <- 1
